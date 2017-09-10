@@ -1,0 +1,56 @@
+frameworkVersion: '>=1.21.0 <2.0.0'
+service: '${self:provider.environment.SERVICE}'
+
+# Custom variables
+# ===================================================================
+custom:
+  stage: '${opt:stage, self:provider.stage}'
+  documentation:
+    version: '1'
+    summary: 'My API'
+    description: 'This is my API'
+    tags:
+      -
+        name: 'greeting'
+        description: 'Services to display greetings'
+
+# The `provider` block defines where your service will be deployed
+# ===================================================================
+provider:
+  name: aws
+  stage: dev
+  runtime: nodejs6.10
+  environment: ${file(./serverless.env.yml):${self:custom.stage}}
+  region: ${self:provider.environment.REGION}
+  profile: ${self:provider.environment.PROFILE}
+  timeout: 30
+  memorySize: 128
+  versionFunctions: true
+
+# The `Functions` you want to deploy
+# ===================================================================
+functions:
+  # Hello
+  # -------------------------------------------------------
+  hello:
+    handler: src/hello.handler
+    events:
+      - http:
+          path: hello
+          method: get
+          documentation:
+            summary: "Greetings"
+            description: "Display a random greeting"
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-aws-documentation
+  - serverless-offline
+
+package:
+  exclude:
+    - node_modules/**/*
+    - package.json
+    - .git
+  include:
+    - src

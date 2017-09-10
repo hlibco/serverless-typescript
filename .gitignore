@@ -1,0 +1,12 @@
+# package directories
+node_modules
+
+# Serverless directories
+.serverless
+
+# Sensitive data
+serverless.env.yml
+
+# Compiled files
+.dist
+.build

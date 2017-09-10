@@ -1,0 +1,15 @@
+---
+swagger: "2.0"
+info:
+  version: "2017-09-10T08:38:10Z"
+  title: "myservice"
+host: "9882hhid.execute-api.us-west-2.amazonaws.com"
+basePath: "/dev"
+schemes:
+- "https"
+paths:
+  /hello:
+    get:
+      summary: "Greetings"
+      description: "Display a random greeting"
+      responses: {}
