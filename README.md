@@ -2,19 +2,28 @@
 
 ### Config
 
+Update your `~/.aws/credentials` with your AWS credentials:
+
+```
+[CHOOSE_A_PROFILE_NAME]
+aws_access_key_id = CHANGE_IT_HERE
+aws_secret_access_key = CHANGE_IT_HERE
+```
+
+
 Create a file called `serverless.env.yml` on the root of this project with the following content:
 
 ```
 default_env: &default_env
   SERVICE: 'myservice'
-  REGION: 'us-west-2'
+  REGION: 'us-west-2' # CHANGE YOUR REGION
   STAGE: 'dev'
 
 dev:
   <<: *default_env
-  PROFILE: 'CHANGE IT HERE'
-  ACCOUNT_ID: 'CHANGE IT HERE'
-  ACCOUNT_CANONICAL_ID: 'CHANGE IT HERE'
+  PROFILE: 'CHANGE_IT_HERE'
+  ACCOUNT_ID: 'CHANGE_IT_HERE'
+  ACCOUNT_CANONICAL_ID: 'CHANGE_IT_HERE'
   STAGE: 'dev'
 ```
 
