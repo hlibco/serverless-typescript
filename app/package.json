@@ -1,0 +1,19 @@
+{
+  "name": "app-aws-serverless-typescript",
+  "description": "AWS Lambda in Typescript and API Gateway (APP)",
+  "version": "0.1.0",
+  "author": "Felipe Hlibco",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hlibco/serverless-typescript.git"
+  },
+  "bugs": "https://github.com/hlibco/serverless-typescript/issues",
+  "engines": {
+    "npm": ">=6",
+    "node": ">=6"
+  },
+  "license": "MIT",
+  "scripts": {
+    "publish": "surge"
+  }
+}

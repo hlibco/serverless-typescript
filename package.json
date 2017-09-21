@@ -1,6 +1,6 @@
 {
-  "name": "aws-serverless-typescript",
-  "description": "AWS Lambda in Typescript and API Gateway",
+  "name": "api-aws-serverless-typescript",
+  "description": "AWS Lambda in Typescript and API Gateway (API)",
   "version": "0.1.0",
   "author": "Felipe Hlibco",
   "repository": {
@@ -12,7 +12,6 @@
     "npm": ">=6",
     "node": ">=6"
   },
-  "main": "",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
@@ -22,11 +21,15 @@
     "remove": "./scripts/run.sh remove"
   },
   "dependencies": {
+    "jsonwebtoken": "8.0.0",
+    "serverless-enable-api-logs": "2.0.0",
+    "serverless-plugin-custom-domain": "2.0.0",
     "uuid": "3.0.1"
   },
   "devDependencies": {
     "@types/aws-lambda": "0.0.16",
-    "serverless-aws-documentation": "^0.8.0",
+    "@types/jsonwebtoken": "^7.2.3",
+    "serverless-aws-documentation": "0.8.0",
     "serverless-offline": "3.15.3",
     "serverless-plugin-typescript": "1.1.2"
   }

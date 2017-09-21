@@ -1,12 +1,12 @@
 import { Handler, Context, Callback } from 'aws-lambda'
-import {capitalize} from './utils/format'
+import {capitalize} from '../utils/format'
 
 interface HelloResponse {
   statusCode: number
   body: string
 }
 
-const handler: Handler = (event: any, context: Context, callback: Callback) => {
+const greeting: Handler = (event: any, context: Context, callback: Callback) => {
 
   const greetings = ['hi', 'hello', 'wassup']
   function getGreeting () {
@@ -24,4 +24,4 @@ const handler: Handler = (event: any, context: Context, callback: Callback) => {
   callback(undefined, response);
 }
 
-export { handler }
+export { greeting }

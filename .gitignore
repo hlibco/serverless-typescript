@@ -10,3 +10,10 @@ serverless.env.yml
 # Compiled files
 .dist
 .build
+dist/
+
+# Logs
+.log
+
+# Secrets
+.env

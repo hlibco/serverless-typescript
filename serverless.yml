@@ -5,6 +5,7 @@ service: '${self:provider.environment.SERVICE}'
 # ===================================================================
 custom:
   stage: '${opt:stage, self:provider.stage}'
+  # domain: "api.metricjam.com"
   documentation:
     version: '1'
     summary: 'My API'
@@ -30,10 +31,47 @@ provider:
 # The `Functions` you want to deploy
 # ===================================================================
 functions:
+  auth:
+    handler: src/handlers/handler.auth
+  tokenEndpoint:
+    handler: src/handlers/handler.tokenEndpoint
+    events:
+      - http:
+          path: api/token
+          method: get
+          integration: lambda
+          cors: true
+  publicEndpoint:
+    handler: src/handlers/handler.publicEndpoint
+    events:
+      - http:
+          path: api/public
+          method: get
+          integration: lambda
+          cors: true
+  privateEndpoint:
+    handler: src/handlers/handler.privateEndpoint
+    events:
+      - http:
+          path: api/private
+          method: post
+          integration: lambda
+          authorizer: auth # See custom authorizer docs here: http://bit.ly/2gXw9pO
+          cors:
+            origins:
+              - '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - Access-Control-Allow-Origin
+              - Access-Control-Expose-Headers
   # Hello
   # -------------------------------------------------------
   hello:
-    handler: src/hello.handler
+    handler: src/handlers/user.greeting
     events:
       - http:
           path: hello
@@ -45,12 +83,14 @@ functions:
 plugins:
   - serverless-plugin-typescript
   - serverless-aws-documentation
+  - serverless-enable-api-logs
+  - serverless-plugin-custom-domain
   - serverless-offline
 
 package:
   exclude:
-    - node_modules/**/*
     - package.json
     - .git
   include:
     - src
+    - node_modules/**/*

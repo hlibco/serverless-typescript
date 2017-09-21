@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <title>Serverless & Typescript</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <link href="app.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Setup</h1>
+
+    <p>Setup the 3 endpoints with the urls shown in the console after you deployed your lambda functions to AWS. Initially it shows the urls you use for development, by running <b>npm start</b>.</p>
+
+    <label> Public Endpoint</label>
+    <input type="text" id="api_url_public" placeholder="https://" value="http://localhost:3000/api/public"/>
+    <b class="verb">GET</b>
+
+    <label>Private Endpoint</label>
+    <input type="text" id="api_url_private" placeholder="https://" value="http://localhost:3000/api/private" />
+    <b class="verb">POST</b>
+
+    <label>Token Endpoint</label>
+    <input type="text" id="api_url_token" placeholder="https://" value="http://localhost:3000/api/token"/>
+    <b class="verb">GET</b>
+
+    <h2>Tests</h2>
+
+    <div class="test">
+      <div class="description">
+        <p>Call the <em>public endpoint</em>.</p>
+        <button onclick="callPublicEndpoint('out-1');">Test</button>
+      </div>
+      <pre id="out-1">output</pre>
+    </div>
+
+    <div class="test">
+      <div class="description">
+        <p>Call the <em>token endpoint</em> to generate a valid token. This token will be used in future calls to the <em>private endpoint</em>.</p>
+        <button onclick="callTokenEndpoint('out-2');">Test</button>
+      </div>
+      <pre id="out-2">output</pre>
+      <input type="text" id="token" placeholder="token" style="margin: 18px 0 0 0; padding-left: 6px; width: 94%"/>
+    </div>
+
+    <div class="test">
+      <div class="description">
+        <p>Call the <em>private endpoint</em> using the previous generated <em>acccess token</em>. If you don't have a token yet, go back to the previous step.</p>
+        <button onclick="callPrivateEndpoint('out-3', true);">Test</button>
+      </div>
+      <pre id="out-3">output</pre>
+    </div>
+
+    <div class="test">
+      <div class="description">
+        <p>Call the <em>private endpoint</em> without <b>any</b> <em>acccess token</em>. You are unauthorized.</p>
+        <button onclick="callPrivateEndpoint('out-4');">Test</button>
+      </div>
+      <pre id="out-4">output</pre>
+    </div>
+
+  </div>
+  <script src="app.js"></script>
+
+</body>
+</html>

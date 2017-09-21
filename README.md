@@ -11,7 +11,7 @@ aws_secret_access_key = CHANGE_IT_HERE
 ```
 
 
-Create a file called `serverless.env.yml` on the root of this project with the following content:
+Create a file called `api/serverless.env.yml` on the root of this project with the following content:
 
 ```
 default_env: &default_env
@@ -27,27 +27,40 @@ dev:
   STAGE: 'dev'
 ```
 
-
-### Deploy
-
-`npm run deploy`
-
-
-### Remove
-
-`npm run remove`
-
-
-### Develop
+### Develop Lambda Functions
 
 In your project root run:
 
-`serverless offline start` or `sls offline start`
+`npm start` or `serverless offline start` or `sls offline start`
 
 to list all the options for the plugin run:
 
 `sls offline --help`
 
+
+### Deploy Lambda Functions & API Gateway
+
+`npm run deploy`
+
+
+### Remove Lambda Functions & API Gateway
+
+`npm run remove`
+
+
+### Deploy UI
+
+`cd app && surge` or `cd app && npm run publish`
+
+Your frontend application will be hosted on surge.sh
+
+**You must change the  content in the file app/CNAME**
+
+---
+## APP PREVIEW
+
+
+![Preview](serverless-typescript.png "Preview")
 
 
 ## Read it later
